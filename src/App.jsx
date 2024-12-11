@@ -1,4 +1,4 @@
-function App() {
+export default function App() {
   return (
     <>
       <div className="min-h-screen bg-blue-500 flex items-center justify-center">
@@ -7,5 +7,3 @@ function App() {
     </>
   );
 }
-
-export default App;
