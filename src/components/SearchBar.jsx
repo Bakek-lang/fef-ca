@@ -11,35 +11,45 @@ export default function SearchBar({ products }) {
     setSearchTerm(input);
 
     const newFilteredProducts = products.filter((product) => {
-      console.log("product title: ", product.title);
-      return product.title.toLowerCase().includes(input.toLowerCase());
+      return product.title
+        .toLowerCase()
+        .split(" ")
+        .some((word) => word.startsWith(input));
     });
 
     setFilteredProducts(newFilteredProducts);
-    console.log("Filtered products: ", filteredProducts);
   }
   return (
-    <div className="relative">
-      <input
-        type="text"
-        placeholder="Search products..."
-        value={searchTerm}
-        onChange={handleSearchChange}
-        className="border-2 border-gray-400 p-2 rounded-lg"
-      />
-      {searchTerm && (
-        <ul className="absolute bg-white border rounded w-full z-10">
-          {filteredProducts.map((product) => (
-            <li
-              key={product.id}
-              className="p-2 cursor-pointer"
-              onClick={() => navigate(`/products/${product.id}`)}
-            >
-              {product.title}
-            </li>
-          ))}
-        </ul>
-      )}
+    <div className="flex justify-center mt-2">
+      <div className="relative">
+        <input
+          type="text"
+          placeholder="Search products..."
+          value={searchTerm}
+          onChange={handleSearchChange}
+          className="border-2 border-gray-400 p-2 rounded-lg"
+        />
+        {searchTerm && (
+          <ul className="absolute bg-white w-full border rounded z-10">
+            {filteredProducts.map((product) => (
+              <li
+                key={product.id}
+                className="p-2 cursor-pointer"
+                onClick={() => navigate(`/products/${product.id}`)}
+              >
+                <div className="flex items-center">
+                  <img
+                    src={product.image.url}
+                    alt={product.title}
+                    className="w-10 h-10"
+                  />
+                  <h2 className="ml-2">{product.title}</h2>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 }
