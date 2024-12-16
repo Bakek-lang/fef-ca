@@ -5,7 +5,7 @@ export default function NavBar() {
     <nav>
       <ul className="flex">
         <li className="p-2">
-          <NavLink to="/">Products</NavLink>
+          <NavLink to="/">Home</NavLink>
         </li>
         <li className="p-2">
           <NavLink to="/contact">Contact</NavLink>

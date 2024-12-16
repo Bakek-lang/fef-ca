@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
+import SearchBar from "../components/SearchBar";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -14,10 +15,13 @@ export default function Home() {
     getData();
   }, []);
   return (
-    <div className="flex flex-wrap justify-center gap-4 p-4">
-      {products.map((product) => (
-        <ProductCard product={product} key={product.id} />
-      ))}
+    <div>
+      <SearchBar products={products} />
+      <div className="flex flex-wrap justify-center gap-4 p-4">
+        {products.map((product) => (
+          <ProductCard product={product} key={product.id} />
+        ))}
+      </div>
     </div>
   );
 }
