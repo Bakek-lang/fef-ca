@@ -1,3 +1,23 @@
+import { useEffect, useState } from "react";
+import ProductCard from "../components/ProductCard";
+
 export default function Home() {
-  return <div>HOME</div>;
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    async function getData() {
+      const response = await fetch("https://v2.api.noroff.dev/online-shop");
+      const data = await response.json();
+      console.log("data: ", data);
+      setProducts(data.data);
+    }
+    getData();
+  }, []);
+  return (
+    <div className="flex flex-wrap justify-center gap-4 p-4">
+      {products.map((product) => (
+        <ProductCard product={product} key={product.id} />
+      ))}
+    </div>
+  );
 }
