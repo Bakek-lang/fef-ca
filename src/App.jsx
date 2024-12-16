@@ -1,9 +1,25 @@
+import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
+import Home from "./pages/Home";
+import ProductPage from "./pages/ProductPage";
+import CheckoutPage from "./pages/CheckoutPage";
+import CheckoutSuccessPage from "./pages/CheckoutSuccessPage";
+import ContactPage from "./pages/ContactPage";
+import PageNotFound from "./pages/PageNotFound";
 
 export default function App() {
   return (
-    <div className="bg-blue-400">
-      <Layout />
+    <div>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="/products/:id" element={<ProductPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/checkout-success" element={<CheckoutSuccessPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Route>
+      </Routes>
     </div>
   );
 }

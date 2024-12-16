@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <>
-      <footer>Help</footer>
+      <footer className="bg-blue-400">Help</footer>
     </>
   );
 }
