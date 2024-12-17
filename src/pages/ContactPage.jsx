@@ -47,6 +47,7 @@ export default function ContactPage() {
     const formErrors = validateForm();
     if (Object.keys(formErrors).length === 0) {
       console.log("Form inputs: ", formData);
+      setErrors({});
     } else {
       setErrors(formErrors);
     }
