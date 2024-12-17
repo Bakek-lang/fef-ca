@@ -7,11 +7,26 @@ export default function CartProvider({ children }) {
 
   function addToCart(product) {
     console.log("cart items: ", cartItems);
-    setCartItems((prevItems) => [...prevItems, product]);
+    setCartItems((prevItems) => {
+      const itemIndex = prevItems.findIndex((item) => item.id === product.id);
+      if (itemIndex > -1) {
+        const newItems = [...prevItems];
+        newItems[itemIndex] = {
+          ...newItems[itemIndex],
+          quantity: newItems[itemIndex].quantity + 1,
+        };
+        return newItems;
+      } else {
+        return [...prevItems, { ...product, quantity: 1 }];
+      }
+    });
   }
 
   function getTotal() {
-    return cartItems.reduce((total, item) => total + item.price, 0);
+    return cartItems.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
   }
 
   return (

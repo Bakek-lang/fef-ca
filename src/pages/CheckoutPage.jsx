@@ -16,12 +16,17 @@ export default function CheckoutPage() {
       <ul>
         {cartItems.map((item, index) => (
           <li key={index}>
-            {item.title} - {item.price}
+            {item.title} - {item.price} x {item.quantity}
           </li>
         ))}
       </ul>
       <p>Total: {getTotal()}</p>
-      <button onClick={handleCheckout}>Checkout</button>
+      <button
+        onClick={handleCheckout}
+        className="bg-orange-400 rounded-lg py-2 px-4"
+      >
+        Checkout
+      </button>
     </div>
   );
 }

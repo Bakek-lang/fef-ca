@@ -5,7 +5,7 @@ import NavBar from "./NavBar";
 export default function Header() {
   const { cartItems } = useCart();
 
-  const itemCount = cartItems.length;
+  const itemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <header className="flex items-center justify-between bg-blue-400">

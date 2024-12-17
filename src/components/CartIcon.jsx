@@ -11,7 +11,7 @@ export default function CartIcon({ itemCount }) {
     <div className="relative cursor-pointer" onClick={handleCartClick}>
       <IoCartSharp size={42} />
       {itemCount > 0 && (
-        <span className="absolute top-0 right-0 rounded-full bg-red-600 text-white h-4 w-4 flex justify-center items-center p-2">
+        <span className="absolute top-0 right-0 rounded-full bg-red-600 text-white h-4 w-4 flex justify-center items-center p-3">
           {itemCount}
         </span>
       )}
