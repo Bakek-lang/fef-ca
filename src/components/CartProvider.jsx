@@ -24,7 +24,7 @@ export default function CartProvider({ children }) {
 
   function getTotal() {
     return cartItems.reduce(
-      (total, item) => total + item.price * item.quantity,
+      (total, item) => total + item.discountedPrice * item.quantity,
       0
     );
   }

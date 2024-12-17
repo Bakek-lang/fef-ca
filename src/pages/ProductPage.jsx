@@ -12,21 +12,22 @@ export default function ProductPage() {
   const { addToCart } = useCart();
 
   useEffect(() => {
-    async function getData(url) {
+    async function getData() {
       try {
         setIsLoading(true);
         setIsError(false);
-        const response = await fetch(url);
+        const response = await fetch(
+          `https://v2.api.noroff.dev/online-shop/${id}`
+        );
         const data = await response.json();
 
         setData(data.data);
       } catch (error) {
         console.log(error);
-      } finally {
-        setIsLoading(false);
       }
+      setIsLoading(false);
     }
-    getData(`https://v2.api.noroff.dev/online-shop/${id}`);
+    getData();
   }, [id]);
 
   if (isLoading || !data) {
@@ -34,8 +35,29 @@ export default function ProductPage() {
   }
 
   if (isError) {
-    <div>Error</div>;
+    return <div>Error</div>;
   }
+
+  if (!data) {
+    return <div>Product not found.</div>;
+  }
+
+  const hasDiscount = data.discountedPrice < data.price;
+  const discountPercentage = hasDiscount
+    ? parseFloat(
+        ((data.price - data.discountedPrice) / data.price) * 100
+      ).toFixed(1)
+    : 0;
+
+  console.log(
+    "Has discount: ",
+    hasDiscount,
+    "percentage: ",
+    discountPercentage
+  );
+
+  console.log(typeof data.discountedPrice);
+  console.log("price: ", typeof data.price);
 
   return (
     <div className="flex flex-col items-center p-4">
@@ -47,7 +69,17 @@ export default function ProductPage() {
       <div className="mt-4 text-center">
         <h2>{data.title}</h2>
         <p>{data.description}</p>
-        <p>{data.price}$</p>
+        {hasDiscount ? (
+          <div>
+            <div className="">
+              <span className="line-through decoration-2">{data.price}</span>
+              <p>{data.discountedPrice}</p>
+            </div>
+            <p className="text-red-500">{discountPercentage}% off!</p>
+          </div>
+        ) : (
+          <p>{data.price}</p>
+        )}
       </div>
       <button
         onClick={() => addToCart(data)}

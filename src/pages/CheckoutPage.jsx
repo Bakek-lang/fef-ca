@@ -26,7 +26,7 @@ export default function CheckoutPage() {
               alt={item.title}
             />
             <h2>{item.title}</h2>
-            <p>{item.price}$</p>
+            <p>{item.discountedPrice}$</p>
             <p>{item.quantity}</p>
           </li>
         ))}
