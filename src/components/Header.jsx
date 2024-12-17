@@ -1,11 +1,16 @@
 import CartIcon from "./CartIcon";
+import { useCart } from "./CartProvider";
 import NavBar from "./NavBar";
 
 export default function Header() {
+  const { cartItems } = useCart();
+
+  const itemCount = cartItems.length;
+
   return (
     <header className="flex items-center justify-between bg-blue-400">
       <NavBar />
-      <CartIcon />
+      <CartIcon itemCount={itemCount} />
     </header>
   );
 }

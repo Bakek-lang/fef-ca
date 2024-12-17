@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useCart } from "../components/CartProvider";
 
 export default function ProductPage() {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   let { id } = useParams();
+
+  // Cart
+  const { addToCart } = useCart();
 
   useEffect(() => {
     async function getData(url) {
@@ -45,7 +49,10 @@ export default function ProductPage() {
         <p>{data.description}</p>
         <p>{data.price}</p>
       </div>
-      <button className="bg-orange-400 rounded-lg  font-bold py-2 px-4">
+      <button
+        onClick={() => addToCart(data)}
+        className="bg-orange-400 rounded-lg  font-bold py-2 px-4"
+      >
         Add to Cart
       </button>
     </div>
