@@ -47,7 +47,7 @@ export default function ProductPage() {
       <div className="mt-4 text-center">
         <h2>{data.title}</h2>
         <p>{data.description}</p>
-        <p>{data.price}</p>
+        <p>{data.price}$</p>
       </div>
       <button
         onClick={() => addToCart(data)}

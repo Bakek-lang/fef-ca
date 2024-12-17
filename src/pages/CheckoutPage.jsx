@@ -26,12 +26,12 @@ export default function CheckoutPage() {
               alt={item.title}
             />
             <h2>{item.title}</h2>
-            <p>{item.price}</p>
+            <p>{item.price}$</p>
             <p>{item.quantity}</p>
           </li>
         ))}
       </ul>
-      <p>Total: {getTotal()}</p>
+      <p>Total: {getTotal().toFixed(2)}$</p>
       <button
         onClick={handleCheckout}
         className="bg-orange-400 rounded-lg py-2 px-4"
