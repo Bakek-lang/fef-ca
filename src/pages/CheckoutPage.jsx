@@ -41,14 +41,16 @@ export default function CheckoutPage() {
         ))}
       </ul>
       <div className="flex flex-col justify-end max-w-5xl  my-4">
-        <p>Total: {total.toFixed(2)}$</p>
         {total > 0 ? (
-          <button
-            onClick={handleCheckout}
-            className="bg-orange-400 rounded-lg py-2 px-4 max-w-32 "
-          >
-            Checkout
-          </button>
+          <>
+            <p>Total: {total.toFixed(2)}$</p>
+            <button
+              onClick={handleCheckout}
+              className="bg-orange-400 rounded-lg py-2 px-4 max-w-32 "
+            >
+              Checkout
+            </button>
+          </>
         ) : (
           <div>
             <p>Your cart is empty.</p>
