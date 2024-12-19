@@ -55,7 +55,7 @@ export default function CheckoutPage() {
           <div>
             <p>Your cart is empty.</p>
             <button
-              onClick={() => (window.location.href = "/")}
+              onClick={() => navigate("/")}
               className="bg-blue-400 rounded-lg py-2 px-4"
             >
               Go Back to Store
