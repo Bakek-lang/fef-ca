@@ -1,3 +1,4 @@
+import { FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../components/CartProvider";
 
@@ -11,8 +12,10 @@ export default function CheckoutPage() {
     navigate("/checkout-success");
   }
 
+  const total = getTotal();
+
   return (
-    <div>
+    <div className="ml-4">
       <h1 className="text-2xl flex justify-center">Checkout</h1>
       <ul>
         {cartItems.map((item, index) => (
@@ -28,16 +31,33 @@ export default function CheckoutPage() {
             <h2>{item.title}</h2>
             <p>{item.discountedPrice}$</p>
             <p>{item.quantity}</p>
+            <div className=" cursor-pointer" onClick={clearCart}>
+              <FaTrash />
+            </div>
           </li>
         ))}
       </ul>
-      <p>Total: {getTotal().toFixed(2)}$</p>
-      <button
-        onClick={handleCheckout}
-        className="bg-orange-400 rounded-lg py-2 px-4"
-      >
-        Checkout
-      </button>
+      <div className="flex flex-col justify-end max-w-5xl  mt-4">
+        <p>Total: {total.toFixed(2)}$</p>
+        {total > 0 ? (
+          <button
+            onClick={handleCheckout}
+            className="bg-orange-400 rounded-lg py-2 px-4 max-w-32 "
+          >
+            Checkout
+          </button>
+        ) : (
+          <div>
+            <p>Your cart is empty.</p>
+            <button
+              onClick={() => (window.location.href = "/")}
+              className="bg-blue-400 rounded-lg py-2 px-4"
+            >
+              Go Back to Store
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
