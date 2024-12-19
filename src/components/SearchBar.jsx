@@ -14,7 +14,7 @@ export default function SearchBar({ products }) {
       return product.title
         .toLowerCase()
         .split(" ")
-        .some((word) => word.startsWith(input));
+        .some((word) => word.startsWith(input.toLowerCase()));
     });
 
     setFilteredProducts(newFilteredProducts);
