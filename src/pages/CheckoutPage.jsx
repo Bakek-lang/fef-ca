@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "../components/CartProvider";
 
 export default function CheckoutPage() {
-  const { cartItems, getTotal, clearCart } = useCart();
+  const { cartItems, getTotal, clearCart, removeItemFromCart } = useCart();
   console.log("cartitems: ", cartItems, "GetTotal: ", getTotal);
   const navigate = useNavigate();
 
@@ -31,7 +31,10 @@ export default function CheckoutPage() {
             <h2>{item.title}</h2>
             <p>{item.discountedPrice}$</p>
             <p>{item.quantity}</p>
-            <div className=" cursor-pointer" onClick={clearCart}>
+            <div
+              className=" cursor-pointer"
+              onClick={() => removeItemFromCart(item.id)}
+            >
               <FaTrash />
             </div>
           </li>
