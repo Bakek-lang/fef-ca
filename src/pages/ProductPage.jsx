@@ -64,7 +64,7 @@ export default function ProductPage() {
       <img
         src={data.image.url}
         alt={data.title}
-        className="max-w-md rounded-lg"
+        className="w-full max-w-xs max-h-64 object-cover rounded-lg"
       />
       <div className="mt-4 text-center">
         <h2>{data.title}</h2>

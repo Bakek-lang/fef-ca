@@ -24,7 +24,7 @@ export default function CheckoutPage() {
             key={index}
           >
             <img
-              className="rounded-md h-32"
+              className="w-32 h-auto object-cover rounded-lg"
               src={item.image.url}
               alt={item.title}
             />
@@ -40,7 +40,7 @@ export default function CheckoutPage() {
           </li>
         ))}
       </ul>
-      <div className="flex flex-col justify-end max-w-5xl  mt-4">
+      <div className="flex flex-col justify-end max-w-5xl  my-4">
         <p>Total: {total.toFixed(2)}$</p>
         {total > 0 ? (
           <button
