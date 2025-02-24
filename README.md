@@ -1,5 +1,7 @@
 # Front-end Frameworks CA
 
+![Project Preview](src/assets/fef.png)
+
 This is my first project using React, where I built a fully functional e-commerce store using the Noroff Online Shop API. The store includes essential e-commerce features such as product listings, a search bar, dynamic product pages, a shopping cart, a checkout process, and a contact form with validation.
 
 ## Features
